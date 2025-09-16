@@ -10,8 +10,10 @@ const LoadingSpinner: React.FC = () => (
 );
 
 export const RemoteComponentWrapper: React.FC = () => {
+  const [buttonClickCount, setButtonClickCount] = React.useState(0);
   return (
     <div className="p-4">
+      <h4>Button in Remote Application is clicked {buttonClickCount} times</h4>
       <Suspense fallback={<LoadingSpinner />}>
         <RemoteHeader />
       </Suspense>
@@ -20,7 +22,7 @@ export const RemoteComponentWrapper: React.FC = () => {
         <Suspense fallback={<LoadingSpinner />}>
           <RemoteButton
             text="Click Me"
-            onClick={() => alert("Button from Remote App clicked!")}
+            onClick={() => setButtonClickCount(buttonClickCount + 1)}
           />
         </Suspense>
       </div>
